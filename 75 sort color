@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) 
+    {
+        //using dutch national flag algorithm
+        int lp=0,mp=0,hp=nums.size()-1;
+        while(mp<=hp)
+        {
+            switch(nums[mp])
+            {
+                    case 0: swap(nums[lp++],nums[mp++]);
+                            break;
+                    case 1: mp++;
+                            break;
+                    
+                    case 2: swap(nums[hp--],nums[mp]);
+                            break;
+            }
+        }
+        
+    }
+};

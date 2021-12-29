@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int climbStairs(int n) 
+    {
+        map<int,int> memo;
+     return steprecursive(0,n,  memo);   
+    }
+    int steprecursive(int currentstair, int target, map<int,int> &memo)
+    {
+        if(currentstair == target)
+            return 1;
+        if(currentstair > target)
+            return 0;
+        auto it = memo.find(currentstair);
+        
+      
+        if (memo.find(currentstair) != memo.end())
+            return memo[currentstair];
+            
+        
+        int stepone = steprecursive( currentstair+1, target,memo);
+        int steptwo = steprecursive(currentstair+2,  target,memo);
+       
+        memo.insert({currentstair,stepone +steptwo});
+        
+        return stepone +steptwo;
+    }
+};

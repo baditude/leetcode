@@ -1,20 +1,18 @@
 class Solution {
 public:
-    unordered_map<int,int> memo;
-    int fib(int n) 
+    unordered_map<int,int>mp;
+    int nthfib(int n)
     {
-      fibfind(n+1,memo);
-      return n==2||n==1 ?  1: memo[n-1];
+        if(n==0 || n==1) return n;
+        int currkey = n;
+        if(mp.find(n)!=mp.end())
+            return mp[n];
+        mp[n]=fib(n-1)+fib(n-2);
+        return mp[n];
     }
-    int fibfind(int n, unordered_map<int,int> &memo)
-    {
-        if(n ==1 || n == 0) return 1;
-        if(memo.find(n) != memo.end() ) return memo[n];
+    
+    int fib(int n) {
+        return nthfib(n);
         
-        int sum1 = fibfind(n-1,memo);
-        int sum2 = fibfind(n-2,memo);
-        int sum =sum1+sum2;
-        memo[n]=sum;
-        return sum;
     }
 };

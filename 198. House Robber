@@ -1,0 +1,16 @@
+class Solution {
+public:
+    unordered_map <int,int> memo;
+    int rob(vector<int>& nums) {
+        return ma(0,nums);
+    }
+    int ma(int ci,vector<int>& nums)
+    {
+        if(ci >= nums.size()) return 0;
+        if(memo.find(ci) != memo.end()) return memo[ci];
+        int yes= nums[ci] + ma(ci+2,nums);   
+        int no = ma(ci+1,nums);
+        memo[ci] = max(yes,no);
+        return memo[ci];
+    }
+};
